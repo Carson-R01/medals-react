@@ -1,0 +1,37 @@
+.app {
+  padding: 16px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #1f1f1f;
+}
+
+.country {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+}
+
+.country__label {
+  white-space: nowrap;
+}
+
+.country__count {
+  font-weight: 600;
+}
+
+button {
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  border: 1px solid #9d9d9d;
+  background: #fdfdfd;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.divider {
+  margin: 8px 0 0;
+  border: none;
+  border-top: 1px solid #9d9d9d;
+}
