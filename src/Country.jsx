@@ -1,21 +1,22 @@
-import { useState } from 'react'
-
-function Country() {
-  const [name] = useState('United States')
-  const [gold, setGold] = useState(0)
-
-  const handleClick = () => {
-    setGold((prev) => prev + 1)
-  }
-
+function Country({ id, name, gold, onDelete }) {
   return (
     <div className="country">
-      <span className="country__label">
-        {name} gold medals: <span className="country__count">{gold}</span>
-      </span>
-      <button type="button" onClick={handleClick} aria-label="Add gold medal">
-        +
-      </button>
+      <div className="country__header">
+        <h2 className="country__name">{name}</h2>
+        <button
+          type="button"
+          className="country__delete"
+          onClick={() => onDelete(id)}
+          aria-label={`Delete ${name}`}
+        >
+          Delete
+        </button>
+      </div>
+      <div className="country__body">
+        <span className="country__label">
+          Gold medals: <span className="country__count">{gold}</span>
+        </span>
+      </div>
     </div>
   )
 }
