@@ -1,4 +1,6 @@
-function Country({ id, name, gold, onDelete }) {
+import Medal from './Medal.jsx'
+
+function Country({ id, name, medals, onDelete }) {
   return (
     <div className="country">
       <div className="country__header">
@@ -9,13 +11,16 @@ function Country({ id, name, gold, onDelete }) {
           onClick={() => onDelete(id)}
           aria-label={`Delete ${name}`}
         >
-          Delete
+          🗑️
         </button>
       </div>
-      <div className="country__body">
-        <span className="country__label">
-          Gold medals: <span className="country__count">{gold}</span>
-        </span>
+      <div className="country__body medals">
+        {medals.map((medal) => (
+          <Medal
+            key={medal.id}
+            name={medal.name}
+          />
+        ))}
       </div>
     </div>
   )
