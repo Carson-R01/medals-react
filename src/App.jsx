@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import './App.css'
 import Country from './Country.jsx'
+import NewCountry from './NewCountry.jsx'
 
 function App() {
   const medalTypes = [
@@ -15,6 +16,16 @@ function App() {
     { id: 2, name: 'China', gold: 3, silver: 1, bronze: 0 },
     { id: 3, name: 'France', gold: 0, silver: 2, bronze: 2 },
   ])
+
+  const handleAddCountry = (name) => {
+    setCountries((prev) => {
+      const nextId = prev.reduce((max, country) => Math.max(max, country.id), 0) + 1
+      return [
+        ...prev,
+        { id: nextId, name, gold: 0, silver: 0, bronze: 0 },
+      ]
+    })
+  }
 
   const handleDelete = (id) => {
     setCountries((prev) => prev.filter((country) => country.id !== id))
@@ -58,21 +69,8 @@ function App() {
         <h1>
           Olympic Medals <span className="header__total">{overallTotals.total}</span>
         </h1>
-        <div className="overall-totals" aria-label="Overall medal totals">
-          <div className="overall-total">
-            <span className="overall-total__label">Gold</span>
-            <span className="overall-total__value">{overallTotals.gold}</span>
-          </div>
-          <div className="overall-total">
-            <span className="overall-total__label">Silver</span>
-            <span className="overall-total__value">{overallTotals.silver}</span>
-          </div>
-          <div className="overall-total">
-            <span className="overall-total__label">Bronze</span>
-            <span className="overall-total__value">{overallTotals.bronze}</span>
-          </div>
-        </div>
       </header>
+      <NewCountry onAdd={handleAddCountry} />
       <div className="countries">
         {countries.map((country) => (
           <Country
